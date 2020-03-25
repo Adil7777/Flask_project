@@ -3,13 +3,23 @@ from telegram.ext import Updater, MessageHandler, Filters
 import config
 import messages
 from parcer import Currency
+from time_ import time
 
 
 class TelegrammBot:
     def __init__(self):
         self.if_hello = False
+        self.time_ = time()
 
     def send_course(self, dollar_buy, dollar_sell, euro_buy, euro_sell, rub_buy, rub_sell):
+        pass
+
+    def course_up(self, buy_now, bot: Bot, update: Update):
+        print('asdfg')
+        send_text = 'Стало: {}'.format(buy_now)
+        bot.send_message(chat_id=update.effective_message.chat_id, text=send_text)
+
+    def valuta_sort(self):
         pass
 
     def message_handler(self, bot: Bot, update: Update):
@@ -21,6 +31,7 @@ class TelegrammBot:
             name = 'Аноним'
 
         text = update.effective_message.text
+        print(text)
 
         for i in messages.HELLO_MESSAGES:
             if i in text.lower():
@@ -28,11 +39,14 @@ class TelegrammBot:
                 break
 
         if self.if_hello:
+            self.if_hello = False
             self.send_text = 'HEllO, {}!!!'.format(name)
 
-        elif 'курс' in text:
+        elif 'курс' in text.lower():
             a = Currency()
-            self.send_text = a.check_currency()
+            self.new, self.old = a.check_currency()[0], a.check_currency()[1]
+            print(self.new, self.old)
+            self.valuta_sort()
 
         else:
             self.send_text = ''
