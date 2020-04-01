@@ -26,6 +26,7 @@ h1, h2,h3,h4,h5, h6 {
 	width: 100%;
 	max-width: 1200px;
 	margin: 40px auto;
+	font-color: #BBB9B9;
 }
 
 .intro {
@@ -134,14 +135,14 @@ h1, h2,h3,h4,h5, h6 {
 }
 
 .section__suptitle{
-	color: #333;
+	color: ##BBB9B9;
 	font-size: 24px;
 	text-align: center;
 	margin: 100px auto 100px;
 }
 
 .section__title{
-	color: #333;
+	color: ##BBB9B9;
 	font-weight: 700;
 	font-size: 30px;
 	text-align: center;
@@ -161,7 +162,7 @@ h1, h2,h3,h4,h5, h6 {
 }
 
 .section__text{
-	color: #333;
+	color: ##BBB9B9;
 	font-size: 45px;
 	text-align: center;
 }
