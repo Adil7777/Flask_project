@@ -2,8 +2,8 @@
 <html lang="en">
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Kurale&display=swap&subset=cyrillic" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="static/bootstrap.min.css">
+<link rel="stylesheet" href="static/style.css">
 <title>CURRENCY RATE</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
     </div>
 </header>
 
-<div class="intro">
+<div class="intro" style="background-image: url({{ url_for('static', filename='01.jpg') }})">
     <div class="container">
         <div class="intro__inner"></div>
         <h2 class="intro__suptitle">your assistant</h2>
@@ -32,24 +32,23 @@
 </div>
 
 
-<section class="section_2">
+<section class="section_2" style="background-color: #808080">
     <div class="container">
 
         <div>
-            <h3 class="section__suptitle">What we do</h3>
-            <h2 class="section__title">About us</h2>
+            <h3 class="section__suptitle" style="margin: 0px auto 100px;">What we do</h3>
+            <h2 class="section__title" style="margin: 100px auto 100px;">About us</h2>
             <div class="section__text">
-                <p>
+                <p style="font-size: 45px">
                     In our website you can convert currencies, check course
                     and watch graphs of any currencies for last months, years etc.
                 </p>
             </div>
         </div>
-        f
         <div class="about">
             <div class="about__item">
                 <div class="about__img">
-                    <img src="assets/img/03.jpg">
+                    <img src="static/aa.jpg">
                 </div>
             </div>
         </div>
@@ -62,7 +61,7 @@
         <div class="header_logo_2">currency rate</div>
         <div class="header__inner">
             <nav class="nav_2">
-                <a class="nav__link_2" href="#">BUY</a>
+                <a class="nav__link_2" href="">BUY</a>
                 <a class="nav__link_2" href="#">SELL</a>
                 <a class="nav__link_2" href="#">RATE OF THE NAZBANK</a>
             </nav>
@@ -70,16 +69,17 @@
         <div class="crr">
             <ul class="list-group">
                 <li class="list-group-item">
-                    DOL ------ {{}} ------------------------- {{}} ------------------------------ {{}}
+                    DOL
                 </li>
                 <li class="list-group-item">
-                    EUR ------ {{}} ------------------------- {{}} ------------------------------ {{}}
+                    EUR
                 </li>
                 <li class="list-group-item">
-                    RUB ------ {{}} ------------------------- {{}} ------------------------------ {{}}
+                    RUB
                 </li>
             </ul>
         </div>
+
     </div>
 </section>
 
