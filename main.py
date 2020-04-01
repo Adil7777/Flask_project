@@ -15,7 +15,7 @@ def about():
 
 @app.route('/currency_rate')
 def currency_rate():
-    return render_template('currency_rate')
+    return render_template('currency_rate.html')
 
 
 if __name__ == '__main__':
