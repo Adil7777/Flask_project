@@ -1,20 +1,5 @@
-/* Спецификация */
-
-body {
-	margin: 0;
-    font-family: 'Kurale', serif;
-    font-size: 15px;
-    line-height: 1.6;
-}
-
-*, *before, *after{
-	box-sizing: border-box;
-}
-
-h1, h2,h3,h4,h5, h6 {
-	margin: 0;
-}
 /* Первый экран */
+
 .header__inner {
 	display: flex;
 	justify-content: space-between;
