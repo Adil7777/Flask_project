@@ -23,5 +23,10 @@ def graphs():
     return render_template('graphs.html')
 
 
+# @app.route('dol_graphs')
+# def dol_graphs():
+#     return render_template('dol_graphs.html')
+#
+
 if __name__ == '__main__':
     app.run(debug=True)
