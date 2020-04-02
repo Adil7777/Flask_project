@@ -19,7 +19,7 @@ h1, h2,h3,h4,h5, h6 {
 	width: 100%;
 	max-width: 1200px;
 	margin: 40px auto;
-	font-color: #343434;
+	background-color: #343434;
 }
 
 .section_2{
@@ -41,7 +41,7 @@ h1, h2,h3,h4,h5, h6 {
 	color: ##BBB9B9;
 	font-size: 24px;
 	text-align: center;
-	margin: 0px auto 50px;
+	margin: 0px auto 25px;
 }
 
 .section__title{
@@ -50,7 +50,7 @@ h1, h2,h3,h4,h5, h6 {
 	font-size: 30px;
 	text-align: center;
 	text-transform: uppercase;
-	margin: 50px auto 50px;
+	margin: 30px auto 30px;
 }
 
 .section__title:after{
@@ -58,7 +58,7 @@ h1, h2,h3,h4,h5, h6 {
 	display: block;
 	width: 60px;
 	height: 3px;
-	margin: 80px auto 40px;
+	margin: 40px auto 20px;
 
 	background-color: #787371;
 
@@ -79,4 +79,4 @@ h1, h2,h3,h4,h5, h6 {
 .about__item{
 	width: 50%;
 	text-align: center;
-	margin: 120px auto 120px;
+	margin: 60px auto 60px;

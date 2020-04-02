@@ -1,0 +1,27 @@
+.graphs{
+    background-color: #343434
+}
+
+.about_3 {
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.about__item_3{
+	width: 50%;
+	text-align: center;
+	margin: 120px auto 120px;
+}
+
+.about__img_3{
+	background: linear-gradient(to bottom, #333, #fff);
+}
+
+.about_item_3:hover .about__img_3 img{
+	opacity .7;
+}
+
+.about__img_3 img{
+	transition: opacity .1s linear;
+}
