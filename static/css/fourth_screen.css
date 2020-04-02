@@ -25,3 +25,7 @@
 .about__img_3 img{
 	transition: opacity .1s linear;
 }
+
+.currencies{
+    margin: 120px auto 120px;
+}
