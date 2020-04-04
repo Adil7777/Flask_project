@@ -4,6 +4,7 @@ from telegram.ext import Updater, MessageHandler, Filters
 import config
 from parcer import Currency
 from time_ import time
+from Currency_converter import currency_converter
 
 
 class TelegrammBot:
@@ -84,6 +85,10 @@ class TelegrammBot:
         if self.if_hello:
             self.if_hello = False
             self.send_text = 'HEllO, {}!!!'.format(name)
+
+        elif 'convert' in text:
+            a = text.split()
+            self.send_text = currency_converter(a[1], a[2], a[3])
 
         elif 'курс' in text.lower():
             a = Currency()
