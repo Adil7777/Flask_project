@@ -33,5 +33,10 @@ def eur_graphs():
     return render_template('eur_graphs.html')
 
 
+@app.route('/rub_graphs')
+def rub_graphs():
+    return render_template('rub_graphs.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
