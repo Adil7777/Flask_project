@@ -1,11 +1,17 @@
-from flask import render_template, Flask
+from flask import render_template, Flask, request
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
-    return render_template('test.html')
+    if request.method == 'GET':
+        return render_template('test.html')
+    elif request.method == 'POST':
+        print(request.form['sellist1'])
+        print(request.form['sellist2'])
+        print(request.form['amount'])
+        return render_template('test.html')
 
 
 @app.route('/about')

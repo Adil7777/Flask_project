@@ -86,7 +86,7 @@ class TelegrammBot:
             self.if_hello = False
             self.send_text = 'HEllO, {}!!!'.format(name)
 
-        elif 'convert' in text:
+        elif 'convert' in text.lower():
             a = text.split()
             self.send_text = currency_converter(a[1], a[2], a[3])
 
