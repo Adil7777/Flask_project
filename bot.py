@@ -26,7 +26,8 @@ class TelegrammBot:
         updater.start_polling()
         updater.idle()
 
-    def send_course(self, dollar_buy, dollar_sell, euro_buy, euro_sell, rub_buy, rub_sell):
+    def send_course(self, dollar_buy, dollar_sell, euro_buy, euro_sell, rub_buy, rub_sell, kgs_buy, kgs_sell, fnt_buy,
+                    fnt_sell):
         self.send_text += 'Курс {}'.format(self.time_)
         self.send_text += "\n----------------"
         if self.dollar is True:
@@ -62,9 +63,13 @@ class TelegrammBot:
         self.dol_buy_new, self.dol_sell_new = new[0], new[1]
         self.eur_buy_new, self.eur_sell_new = new[2], new[3]
         self.rub_buy_new, self.rub_sell_new = new[4], new[5]
+        self.kgs_buy_new, self.kgs_sell_new = new[6], new[7]
+        self.fnt_but_new, self.fnt_sell_new = new[8], new[9]
         self.dol_buy_old, self.dol_sell_old = old[0], old[1]
         self.eur_buy_old, self.eur_sell_old = old[2], old[3]
         self.rub_buy_old, self.rub_sell_old = old[4], old[5]
+        self.kgs_buy_old, self.kgs_sell_old = old[6], old[7]
+        self.fnt_but_old, self.fnt_sell_old = old[8], old[9]
 
     def message_handler(self, bot: Bot, update: Update):
         user = update.effective_user
@@ -114,7 +119,8 @@ class TelegrammBot:
                         self.rub = True
 
                 self.send_course(self.dol_buy_new, self.dol_sell_new, self.eur_buy_new, self.eur_sell_new,
-                                 self.rub_buy_new, self.rub_sell_new)
+                                 self.rub_buy_new, self.rub_sell_new, self.kgs_buy_new, self.kgs_sell_new,
+                                 self.fnt_but_new, self.fnt_sell_new)
         else:
             self.send_text = 'В ответах я отраничен'
 

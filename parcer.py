@@ -29,8 +29,12 @@ class Currency:
         eur_sell = sell[1].text
         rub_buy = buy[2].text
         rub_sell = sell[2].text
+        kgs_buy = buy[3].text
+        kgs_sell = sell[3].text
+        fnt_buy = buy[4].text
+        fnt_sell = sell[4].text
         old_currents = [dol_buy, dol_sell, eur_buy,
-                        eur_sell, rub_buy, rub_sell]
+                        eur_sell, rub_buy, rub_sell, kgs_buy, kgs_sell, fnt_buy, fnt_sell]
         return old_currents
 
     def sort_valuta(self, buy, sell):
@@ -40,8 +44,13 @@ class Currency:
         self.eur_sell = sell[1].text
         self.rub_buy = buy[2].text
         self.rub_sell = sell[2].text
+        self.kgs_buy = buy[3].text
+        self.kgs_sell = sell[3].text
+        self.fnt_buy = buy[4].text
+        self.fnt_sell = sell[4].text
         self.new_currents = [self.dol_buy, self.dol_sell, self.eur_buy,
-                             self.eur_sell, self.rub_buy, self.rub_sell]
+                             self.eur_sell, self.rub_buy, self.rub_sell,
+                             self.kgs_buy, self.kgs_sell, self.fnt_buy, self.fnt_sell]
 
     def get_currency_price(self):
         full_page = requests.get(self.DOLLAR_TO_KZ, self.headers)
