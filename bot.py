@@ -14,6 +14,8 @@ class TelegrammBot:
         self.dollar = False
         self.euro = False
         self.rub = False
+        self.som = False
+        self.fnt = False
         self.send_text = ''
         self.not_else = True
 
@@ -48,7 +50,20 @@ class TelegrammBot:
             self.send_text += '\nПокупка рубля: {}'.format(rub_sell)
             self.send_text += '\nПродажа рубля: {}'.format(rub_buy)
             self.send_text += '\n----------------'
-        elif not self.dollar and not self.euro and not self.rub and self.not_else:
+        if self.som is True:
+            self.som = False
+            self.not_else = False
+            self.send_text += '\nПокупка сома: {}'.format(kgs_sell)
+            self.send_text += '\nПродажа сома: {}'.format(kgs_buy)
+            self.send_text += '\n----------------'
+        if self.fnt is True:
+            self.fnt = False
+            self.not_else = False
+            self.send_text += '\nПокупка фунт стерлинга: {}'.format(fnt_sell)
+            self.send_text += '\nПродажа фунт стерлинга: {}'.format(fnt_buy)
+            self.send_text += '\n----------------'
+        elif not self.dollar and not self.euro and not self.rub and \
+                self.not_else and not self.fnt and not self.som:
             self.send_text += '\nПокупка доллара: {}'.format(dollar_sell)
             self.send_text += '\nПродажа доллара: {}'.format(dollar_buy)
             self.send_text += '\n----------------'
@@ -57,6 +72,12 @@ class TelegrammBot:
             self.send_text += '\n----------------'
             self.send_text += '\nПокупка рубля: {}'.format(rub_sell)
             self.send_text += '\nПродажа рубля: {}'.format(rub_buy)
+            self.send_text += '\n----------------'
+            self.send_text += '\nПокупка сома: {}'.format(kgs_sell)
+            self.send_text += '\nПродажа сома: {}'.format(kgs_buy)
+            self.send_text += '\n----------------'
+            self.send_text += '\nПокупка фунт стерлинга: {}'.format(fnt_sell)
+            self.send_text += '\nПродажа фунт стерлинга: {}'.format(fnt_buy)
             self.send_text += '\n----------------'
 
     def valuta_sort(self, new, old):
@@ -117,6 +138,16 @@ class TelegrammBot:
                 for i in RUB:
                     if i in text.lower():
                         self.rub = True
+
+                for i in FUNT:
+                    if i in text.lower():
+                        self.fnt = True
+                        break
+
+                for i in SOM:
+                    if i in text.lower():
+                        self.som = True
+                        break
 
                 self.send_course(self.dol_buy_new, self.dol_sell_new, self.eur_buy_new, self.eur_sell_new,
                                  self.rub_buy_new, self.rub_sell_new, self.kgs_buy_new, self.kgs_sell_new,

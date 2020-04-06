@@ -4,4 +4,6 @@ DOWN = 'ОГОГО Курс упал'
 DOLLAR = ['dol', 'dollar', 'дол', 'доллар']
 EURO = ['eur', 'euro', 'евро']
 RUB = ['rub', 'рубл']
+SOM = ['som', 'сом', 'кыргыз']
+FUNT = ['фунт', 'стерлинг', 'funt', 'sterling']
 
