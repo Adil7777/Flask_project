@@ -72,7 +72,6 @@ class Currency:
         else:
             self.up = False
             self.down = False
-        # print(currency_buy, currency_sell, self.up, self.down)
         return self.new_currents, self.old_currents
 
 

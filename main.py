@@ -1,12 +1,24 @@
 from flask import render_template, Flask, request
+from parcer import Currency
 
 app = Flask(__name__)
+
+currency = Currency()
+cur = currency.check_currency()[0]
+
+dol_sell, dol_buy = cur[0], cur[1]
+eur_sell, eur_buy = cur[2], cur[3]
+rub_sell, rub_buy = cur[4], cur[5]
+kgs_sell, kgs_buy = cur[6], cur[7]
+fnt_sell, fnt_buy = cur[8], cur[9]
 
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'GET':
-        return render_template('test.html')
+        return render_template('test.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
+                               eur_buy=str(eur_buy), eur_sell=str(eur_sell),
+                               rub_buy=str(rub_buy), rub_sell=str(rub_sell))
     elif request.method == 'POST':
         print(request.form['sellist1'])
         print(request.form['sellist2'])
