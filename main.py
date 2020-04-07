@@ -33,7 +33,9 @@ def about():
 
 @app.route('/currency_rate')
 def currency_rate():
-    return render_template('currency_rate.html')
+    return render_template('currency_rate.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
+                           eur_buy=str(eur_buy), eur_sell=str(eur_sell),
+                           rub_buy=str(rub_buy), rub_sell=str(rub_sell))
 
 
 @app.route('/graphs')
@@ -59,6 +61,15 @@ def rub_graphs():
 @app.route('/converter')
 def converter():
     return render_template('converter.html')
+
+
+@app.route('/more_currencies')
+def more_currencies():
+    return render_template('more_currencies.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
+                           eur_buy=str(eur_buy), eur_sell=str(eur_sell),
+                           rub_buy=str(rub_buy), rub_sell=str(rub_sell),
+                           kgs_buy=str(kgs_buy), kgs_sell=str(kgs_sell),
+                           fnt_buy=str(fnt_buy), fnt_sell=str(fnt_sell))
 
 
 if __name__ == '__main__':
