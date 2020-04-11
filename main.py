@@ -63,6 +63,11 @@ def converter():
     return render_template('converter.html')
 
 
+@app.route('/change')
+def change():
+    return render_template('change.html')
+
+
 @app.route('/more_currencies')
 def more_currencies():
     return render_template('more_currencies.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
@@ -73,4 +78,4 @@ def more_currencies():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=8080, host='127.0.0.1')
