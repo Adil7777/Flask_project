@@ -1,7 +1,40 @@
-from flask import render_template, Flask, request
+from flask import render_template, Flask, request, url_for
 from parcer import Currency
 
 app = Flask(__name__)
+
+
+@app.route('/', methods=['POST', 'GET'])
+def change():
+    if request.method == 'GET':
+        return f'''<!DOCTYPE html>
+                <html lang="en">
+                <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/change.css')}" />
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Login</title>
+                </head>
+                <body>
+                <form class="box" method="post">
+                    <h1>Login</h1>
+                    <input type="text" name="" placeholder="Username">
+                    <input type="password" name="" placeholder="Password">
+                    <input type="submit" name="" value="Login">
+                    <a style="display: inline-block;
+                                vertical-align: top;
+                                margin: 0 25px;
+                                position: relative;
+                            
+                                color: #A979EE;
+                                text-decoration: none;
+                                transition: color .2s linear;" 
+                                href='create_account'>Don't have an account?</a>
+                </form>
+                </body>
+                </html>'''
+    elif request.method == 'POST':
+        pass
+
 
 currency = Currency()
 cur = currency.check_currency()[0]
@@ -13,7 +46,7 @@ kgs_sell, kgs_buy = cur[6], cur[7]
 fnt_sell, fnt_buy = cur[8], cur[9]
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/main', methods=['POST', 'GET'])
 def index():
     if request.method == 'GET':
         return render_template('test.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
@@ -24,6 +57,11 @@ def index():
         print(request.form['sellist2'])
         print(request.form['amount'])
         return render_template('test.html')
+
+
+@app.route('/create_account')
+def create_account():
+    return render_template('create_account.html')
 
 
 @app.route('/about')
@@ -61,11 +99,6 @@ def rub_graphs():
 @app.route('/converter')
 def converter():
     return render_template('converter.html')
-
-
-@app.route('/change')
-def change():
-    return render_template('change.html')
 
 
 @app.route('/more_currencies')
