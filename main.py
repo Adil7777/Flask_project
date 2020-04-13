@@ -1,5 +1,6 @@
 from flask import render_template, Flask, request, url_for
 from parcer import Currency
+from logins import *
 
 app = Flask(__name__)
 
@@ -17,8 +18,8 @@ def change():
                 <body>
                 <form class="box" method="post">
                     <h1>Login</h1>
-                    <input type="text" name="" placeholder="Username">
-                    <input type="password" name="" placeholder="Password">
+                    <input type="text" name="name" placeholder="Username">
+                    <input type="password" name="pass" placeholder="Password">
                     <input type="submit" name="" value="Login">
                     <a style="display: inline-block;
                                 vertical-align: top;
@@ -29,11 +30,23 @@ def change():
                                 text-decoration: none;
                                 transition: color .2s linear;" 
                                 href='create_account'>Don't have an account?</a>
+                    <a style="display: inline-block;
+                                vertical-align: top;
+                                margin: 0 25px;
+                                position: relative;
+                            
+                                color: #A979EE;
+                                text-decoration: none;
+                                transition: color .2s linear;" 
+                                href='forget_password'>Forget password(?</a>
                 </form>
                 </body>
                 </html>'''
     elif request.method == 'POST':
-        pass
+        if str(request.form['name']) + ":" + str(request.form['pass']) in LOGINS:
+            return render_template('test.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
+                                   eur_buy=str(eur_buy), eur_sell=str(eur_sell),
+                                   rub_buy=str(rub_buy), rub_sell=str(rub_sell))
 
 
 currency = Currency()
@@ -53,15 +66,28 @@ def index():
                                eur_buy=str(eur_buy), eur_sell=str(eur_sell),
                                rub_buy=str(rub_buy), rub_sell=str(rub_sell))
     elif request.method == 'POST':
-        print(request.form['sellist1'])
-        print(request.form['sellist2'])
-        print(request.form['amount'])
-        return render_template('test.html')
+        return render_template('test.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
+                               eur_buy=str(eur_buy), eur_sell=str(eur_sell),
+                               rub_buy=str(rub_buy), rub_sell=str(rub_sell))
 
 
-@app.route('/create_account')
+@app.route('/create_account', methods=['POST', 'GET'])
 def create_account():
-    return render_template('create_account.html')
+    if request.method == 'GET':
+        return render_template('create_account.html')
+    elif request.method == 'POST':
+        add_account(request.form['name'], request.form['pass'], request.form['email'])
+        return render_template('test.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
+                               eur_buy=str(eur_buy), eur_sell=str(eur_sell),
+                               rub_buy=str(rub_buy), rub_sell=str(rub_sell))
+
+
+@app.route('/forget_password', methods=['POST', 'GET'])
+def forget_password():
+    if request.method == 'GET':
+        return render_template('forget_password.html')
+    elif request.method == 'POST':
+        return
 
 
 @app.route('/about')
