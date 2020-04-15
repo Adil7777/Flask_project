@@ -8,7 +8,6 @@ with open("login.txt") as file_handler:
         line = line.split(' ')
         LOGINS.append(line[0].replace('\n', ''))
         EMAILS[line[1].replace('\n', '')] = line[0].replace('\n', '')
-print(EMAILS)
 
 
 def add_account(name, password, email):

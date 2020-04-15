@@ -1,6 +1,7 @@
 from flask import render_template, Flask, request, url_for
 from parcer import Currency
 from logins import *
+from send_email import send_email
 
 app = Flask(__name__)
 
@@ -32,7 +33,7 @@ def change():
                                 href='create_account'>Don't have an account?</a>
                     <a style="display: inline-block;
                                 vertical-align: top;
-                                margin: 0 25px;
+                                margin: 25px 25px;
                                 position: relative;
                             
                                 color: #A979EE;
@@ -87,7 +88,9 @@ def forget_password():
     if request.method == 'GET':
         return render_template('forget_password.html')
     elif request.method == 'POST':
-        return
+        result = send_email(request.form['email'])
+        return render_template('send_email.html', result=result)
+    print(request.method)
 
 
 @app.route('/about')
