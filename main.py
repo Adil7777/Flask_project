@@ -2,6 +2,7 @@ from flask import render_template, Flask, request, url_for
 from parcer import Currency
 from logins import *
 from send_email import send_email
+from Currency_converter import currency_converter
 
 app = Flask(__name__)
 
@@ -76,10 +77,11 @@ def index():
                                rub_buy=str(rub_buy), rub_sell=str(rub_sell), naz_dol=str(dol_naz), naz_eur=str(eur_naz),
                                naz_rub=str(rub_naz))
     elif request.method == 'POST':
+        a = currency_converter(request.form['amount'], request.form['sellist1'], request.form['sellist2'])
         return render_template('test.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
                                eur_buy=str(eur_buy), eur_sell=str(eur_sell),
                                rub_buy=str(rub_buy), rub_sell=str(rub_sell), naz_dol=str(dol_naz), naz_eur=str(eur_naz),
-                               naz_rub=str(rub_naz))
+                               naz_rub=str(rub_naz), a=str(a))
 
 
 @app.route('/create_account', methods=['POST', 'GET'])
@@ -90,7 +92,8 @@ def create_account():
         add_account(request.form['name'], request.form['pass'], request.form['email'])
         return render_template('test.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
                                eur_buy=str(eur_buy), eur_sell=str(eur_sell),
-                               rub_buy=str(rub_buy), rub_sell=str(rub_sell))
+                               rub_buy=str(rub_buy), rub_sell=str(rub_sell), naz_dol=str(dol_naz), naz_eur=str(eur_naz),
+                               naz_rub=str(rub_naz))
 
 
 @app.route('/forget_password', methods=['POST', 'GET'])
@@ -135,9 +138,13 @@ def rub_graphs():
     return render_template('rub_graphs.html')
 
 
-@app.route('/converter')
+@app.route('/converter', methods=['POST', 'GET'])
 def converter():
-    return render_template('converter.html')
+    if request.method == 'GET':
+        return render_template('converter.html')
+    elif request.method == 'POST':
+        a = currency_converter(request.form['amount'], request.form['sellist1'], request.form['sellist2'])
+        return render_template('converter.html', a=str(a))
 
 
 @app.route('/more_currencies')
