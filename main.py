@@ -47,17 +47,25 @@ def change():
         if str(request.form['name']) + ":" + str(request.form['pass']) in LOGINS:
             return render_template('test.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
                                    eur_buy=str(eur_buy), eur_sell=str(eur_sell),
-                                   rub_buy=str(rub_buy), rub_sell=str(rub_sell))
+                                   rub_buy=str(rub_buy), rub_sell=str(rub_sell), naz_dol=str(dol_naz),
+                                   naz_eur=str(eur_naz),
+                                   naz_rub=str(rub_naz))
 
 
 currency = Currency()
 cur = currency.check_currency()[0]
+naz = currency.nazbank()
 
 dol_sell, dol_buy = cur[0], cur[1]
 eur_sell, eur_buy = cur[2], cur[3]
 rub_sell, rub_buy = cur[4], cur[5]
 kgs_sell, kgs_buy = cur[6], cur[7]
 fnt_sell, fnt_buy = cur[8], cur[9]
+dol_naz = naz[0].split(' ')[-1]
+eur_naz = naz[1].split(' ')[-1]
+kgs_naz = naz[2].split(' ')[-1]
+rub_naz = naz[3].split(' ')[-1]
+fnt_naz = naz[4].split(' ')[-1]
 
 
 @app.route('/main', methods=['POST', 'GET'])
@@ -65,11 +73,13 @@ def index():
     if request.method == 'GET':
         return render_template('test.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
                                eur_buy=str(eur_buy), eur_sell=str(eur_sell),
-                               rub_buy=str(rub_buy), rub_sell=str(rub_sell))
+                               rub_buy=str(rub_buy), rub_sell=str(rub_sell), naz_dol=str(dol_naz), naz_eur=str(eur_naz),
+                               naz_rub=str(rub_naz))
     elif request.method == 'POST':
         return render_template('test.html', dol_buy=str(dol_buy), dol_sell=str(dol_sell),
                                eur_buy=str(eur_buy), eur_sell=str(eur_sell),
-                               rub_buy=str(rub_buy), rub_sell=str(rub_sell))
+                               rub_buy=str(rub_buy), rub_sell=str(rub_sell), naz_dol=str(dol_naz), naz_eur=str(eur_naz),
+                               naz_rub=str(rub_naz))
 
 
 @app.route('/create_account', methods=['POST', 'GET'])
@@ -136,7 +146,8 @@ def more_currencies():
                            eur_buy=str(eur_buy), eur_sell=str(eur_sell),
                            rub_buy=str(rub_buy), rub_sell=str(rub_sell),
                            kgs_buy=str(kgs_buy), kgs_sell=str(kgs_sell),
-                           fnt_buy=str(fnt_buy), fnt_sell=str(fnt_sell))
+                           fnt_buy=str(fnt_buy), fnt_sell=str(fnt_sell), naz_dol=str(dol_naz), naz_eur=str(eur_naz),
+                           naz_rub=str(rub_naz), naz_kgs=str(kgs_naz), naz_fnt=str(fnt_naz))
 
 
 if __name__ == '__main__':

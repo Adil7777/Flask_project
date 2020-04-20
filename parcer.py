@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 class Currency:
     DOLLAR_TO_KZ = 'https://mig.kz/'
+    NAZBANK = 'https://nationalbank.kz/?furl=cursFull&switch=rus'
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'
     }
@@ -15,6 +16,33 @@ class Currency:
         self.difference = 4
         self.up = False
         self.down = False
+
+    def nazbank(self):
+        nazbank = []
+        a = True
+        next = False
+        page = requests.get(self.NAZBANK, self.headers)
+        soup_2 = BeautifulSoup(page.content, 'html.parser')
+        course = soup_2.findAll('td', {'class': 'gen7'})
+        for i in course:
+            if 'GBP' in i.text:
+                next = True
+            elif 'RUB' in i.text:
+                next = True
+            elif 'KGS' in i.text:
+                next = True
+            elif 'EUR' in i.text:
+                next = True
+            elif 'USD' in i.text:
+                next = True
+            elif next:
+                index = course.index(i)
+                text = course[index - 1].text
+                nazbank.append('{} {}'.format(text, i.text))
+                next = False
+            # print(i.text)
+            # print('---------')
+        return nazbank
 
     def first_time(self):
         full_page = requests.get(self.DOLLAR_TO_KZ, self.headers)
@@ -77,3 +105,4 @@ class Currency:
 
 a = Currency()
 a.check_currency()
+a.nazbank()
