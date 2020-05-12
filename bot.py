@@ -114,16 +114,16 @@ class TelegrammBot:
 
         elif 'convert' in text.lower():
             a = text.split()
-            self.send_text = currency_converter(a[1], a[2], a[3])
+            self.send_text = '{} {} в {} - {}'.format(a[1], a[2], a[3], currency_converter(a[1], a[2], a[3]))
 
         elif 'курс' in text.lower():
             a = Currency()
             self.new, self.old = a.check_currency()[0], a.check_currency()[1]
             self.valuta_sort(self.new, self.old)
             if self.dol_buy_new > self.dol_buy_old:
-                pass
+                self.send_text = UP
             elif self.dol_buy_new < self.dol_buy_old:
-                pass
+                self.send_text = DOWN
             else:
                 for i in DOLLAR:
                     if i in text.lower():
